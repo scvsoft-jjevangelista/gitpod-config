@@ -23,7 +23,6 @@ alias gst='git status'
 alias gss='git status -s'
 alias gsb='git status -sb'
 alias gu='git up'
-alias history=omz_history
 alias l='ls -lah'
 alias la='ls -lAh'
 alias ll='ls -lh'
