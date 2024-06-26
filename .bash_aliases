@@ -38,3 +38,5 @@ alias yi='yarn install'
 alias yr='yarn remove'
 alias yui='yarn upgrade-interactive'
 alias yw='yarn why'
+
+PS1='\[\033[01;35m\]$(hostname | awk -F"-" '\''{print $NF}'\'')\[\033[01;32m\]$(__git_ps1)\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
