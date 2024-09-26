@@ -39,6 +39,7 @@ alias yr='yarn remove'
 alias yui='yarn upgrade-interactive'
 alias yw='yarn why'
 
+alias cdp='cd /workspace/quizlet-web-php'
 alias pda="docker exec -e COMPOSER=php/not-transpiled/composer.json -it `docker ps -q --filter name=services-php-fpm` composer dump-autoload --ignore-platform-reqs"
 alias pt="docker exec -e COMPOSER=php/not-transpiled/composer.json -e QZ__ENVIRONMENT=test -it `docker ps -q --filter name=services-php-fpm` composer test "
 alias pud="cdq & git ls-files --modified --others --exclude-standard | xargs -I {} cp --parents {} /workspace/quizlet-web & cd -"
