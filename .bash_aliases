@@ -15,7 +15,7 @@ alias glg='git log --stat'
 alias glp=_git_log_prettily
 alias gm='git merge'
 alias gmm='git merge main'
-alias gp='git push'
+alias pus='git push'
 alias gpd='git push --dry-run'
 alias grep='grep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 alias gsh='git show'
