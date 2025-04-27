@@ -1,0 +1,4 @@
+tasks:
+  - init: |
+      git clone https://github.com/scvsoft-jjevangelista/gitpod-config.git ~/.gitpod-config
+      bash ~/.gitpod-config/scripts/install-extensions.sh
