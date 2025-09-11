@@ -38,6 +38,8 @@ alias yi='yarn install'
 alias yr='yarn remove'
 alias yui='yarn upgrade-interactive'
 alias yw='yarn why'
+alias yht='yarn hh test'
+alias ypt='yarn php test'
 
 alias cdp='cd /workspace/quizlet-web-php'
 alias pda="docker exec -e COMPOSER=php/not-transpiled/composer.json -it `docker ps -q --filter name=services-php-fpm` composer dump-autoload --ignore-platform-reqs"
