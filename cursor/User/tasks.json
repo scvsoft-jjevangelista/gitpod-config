@@ -1,0 +1,144 @@
+{
+  // User Tasks that recreate the Gitpod task tabs on folder open.
+  // Coder already started these processes; commands below are the Gitpod
+  // *foreground* only. Do not re-run the .gitpod.yml init/before scripts.
+  // First time in this workspace: Command Palette ->
+  // "Tasks: Manage Automatic Tasks" -> Allow.
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Data Services",
+      "type": "shell",
+      "command": "tooling/devenvs/scripts/follow-logs.sh mysql consul consul-template memcached fluentd",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false
+      }
+    },
+    {
+      "label": "PHP Services",
+      "type": "shell",
+      "command": "tooling/devenvs/scripts/follow-logs.sh php-fpm php-nginx",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false
+      }
+    },
+    {
+      "label": "Devheh",
+      "type": "shell",
+      "command": "tail -F /workspace/logs/devheh.log",
+      "isBackground": true,
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false
+      }
+    },
+    {
+      "label": "Renderer",
+      "type": "shell",
+      "command": "pnpm dlx pm2 logs dev-main-server",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false
+      }
+    },
+    {
+      "label": "Claude Code",
+      "type": "shell",
+      "command": "tooling/devenvs/scripts/claude-code.sh",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false
+      }
+    },
+    {
+      "label": "Ngrok",
+      "type": "shell",
+      "command": "tail -F /workspace/logs/ngrok.log",
+      "isBackground": true,
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false
+      }
+    },
+    {
+      "label": "Welcome",
+      "type": "shell",
+      "command": "tooling/devenvs/scripts/welcome.sh",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": false
+      }
+    }
+  ]
+}

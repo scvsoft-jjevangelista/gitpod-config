@@ -8,3 +8,9 @@ DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 mkdir -p "${HOME}/.zshrc.d"
 ln -sfn "${DOTFILES_DIR}/.zshrc.d/personal-aliases.zsh" \
   "${HOME}/.zshrc.d/99-personal-aliases.zsh"
+
+# Cursor user tasks: Gitpod-style named tabs on folder open.
+# First time: Command Palette -> "Tasks: Manage Automatic Tasks" -> Allow.
+mkdir -p "${HOME}/.cursor-server/data/User"
+ln -sfn "${DOTFILES_DIR}/cursor/User/tasks.json" \
+  "${HOME}/.cursor-server/data/User/tasks.json"
