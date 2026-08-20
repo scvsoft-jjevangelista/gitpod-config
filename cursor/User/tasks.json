@@ -1,7 +1,11 @@
 {
   // User Tasks that recreate the Gitpod task tabs on folder open.
-  // Coder already started these processes; commands below are the Gitpod
-  // *foreground* only. Do not re-run the .gitpod.yml init/before scripts.
+  //
+  // Do not use isBackground: Cursor treats an empty problemMatcher as
+  // "task finished" and closes the tab. Keep the process in the foreground
+  // and never close the panel. keep-devenv-tab drops into zsh if the
+  // command exits (welcome, missing logs, claude without a key).
+  //
   // First time in this workspace: Command Palette ->
   // "Tasks: Manage Automatic Tasks" -> Allow.
   "version": "2.0.0",
@@ -9,11 +13,10 @@
     {
       "label": "Data Services",
       "type": "shell",
-      "command": "tooling/devenvs/scripts/follow-logs.sh mysql consul consul-template memcached fluentd",
+      "command": "${env:HOME}/.local/bin/keep-devenv-tab ${workspaceFolder}/tooling/devenvs/scripts/follow-logs.sh mysql consul consul-template memcached fluentd",
       "options": {
         "cwd": "${workspaceFolder}"
       },
-      "isBackground": true,
       "problemMatcher": [],
       "runOptions": {
         "runOn": "folderOpen"
@@ -23,17 +26,17 @@
         "reveal": "always",
         "focus": false,
         "panel": "dedicated",
-        "showReuseMessage": false
+        "showReuseMessage": false,
+        "close": false
       }
     },
     {
       "label": "PHP Services",
       "type": "shell",
-      "command": "tooling/devenvs/scripts/follow-logs.sh php-fpm php-nginx",
+      "command": "${env:HOME}/.local/bin/keep-devenv-tab ${workspaceFolder}/tooling/devenvs/scripts/follow-logs.sh php-fpm php-nginx",
       "options": {
         "cwd": "${workspaceFolder}"
       },
-      "isBackground": true,
       "problemMatcher": [],
       "runOptions": {
         "runOn": "folderOpen"
@@ -43,14 +46,14 @@
         "reveal": "always",
         "focus": false,
         "panel": "dedicated",
-        "showReuseMessage": false
+        "showReuseMessage": false,
+        "close": false
       }
     },
     {
       "label": "Devheh",
       "type": "shell",
-      "command": "tail -F /workspace/logs/devheh.log",
-      "isBackground": true,
+      "command": "${env:HOME}/.local/bin/keep-devenv-tab tail -F /workspace/logs/devheh.log",
       "problemMatcher": [],
       "runOptions": {
         "runOn": "folderOpen"
@@ -60,17 +63,17 @@
         "reveal": "always",
         "focus": false,
         "panel": "dedicated",
-        "showReuseMessage": false
+        "showReuseMessage": false,
+        "close": false
       }
     },
     {
       "label": "Renderer",
       "type": "shell",
-      "command": "pnpm dlx pm2 logs dev-main-server",
+      "command": "${env:HOME}/.local/bin/keep-devenv-tab pnpm dlx pm2 logs dev-main-server",
       "options": {
         "cwd": "${workspaceFolder}"
       },
-      "isBackground": true,
       "problemMatcher": [],
       "runOptions": {
         "runOn": "folderOpen"
@@ -80,17 +83,17 @@
         "reveal": "always",
         "focus": false,
         "panel": "dedicated",
-        "showReuseMessage": false
+        "showReuseMessage": false,
+        "close": false
       }
     },
     {
       "label": "Claude Code",
       "type": "shell",
-      "command": "tooling/devenvs/scripts/claude-code.sh",
+      "command": "${env:HOME}/.local/bin/keep-devenv-tab ${workspaceFolder}/tooling/devenvs/scripts/claude-code.sh",
       "options": {
         "cwd": "${workspaceFolder}"
       },
-      "isBackground": true,
       "problemMatcher": [],
       "runOptions": {
         "runOn": "folderOpen"
@@ -100,14 +103,14 @@
         "reveal": "always",
         "focus": false,
         "panel": "dedicated",
-        "showReuseMessage": false
+        "showReuseMessage": false,
+        "close": false
       }
     },
     {
       "label": "Ngrok",
       "type": "shell",
-      "command": "tail -F /workspace/logs/ngrok.log",
-      "isBackground": true,
+      "command": "${env:HOME}/.local/bin/keep-devenv-tab tail -F /workspace/logs/ngrok.log",
       "problemMatcher": [],
       "runOptions": {
         "runOn": "folderOpen"
@@ -117,17 +120,17 @@
         "reveal": "always",
         "focus": false,
         "panel": "dedicated",
-        "showReuseMessage": false
+        "showReuseMessage": false,
+        "close": false
       }
     },
     {
       "label": "Welcome",
       "type": "shell",
-      "command": "tooling/devenvs/scripts/welcome.sh",
+      "command": "${env:HOME}/.local/bin/keep-devenv-tab ${workspaceFolder}/tooling/devenvs/scripts/welcome.sh",
       "options": {
         "cwd": "${workspaceFolder}"
       },
-      "isBackground": true,
       "problemMatcher": [],
       "runOptions": {
         "runOn": "folderOpen"
@@ -137,7 +140,8 @@
         "reveal": "always",
         "focus": true,
         "panel": "dedicated",
-        "showReuseMessage": false
+        "showReuseMessage": false,
+        "close": false
       }
     }
   ]
