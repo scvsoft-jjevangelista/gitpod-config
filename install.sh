@@ -25,20 +25,28 @@ if command -v cursor >/dev/null 2>&1; then
   cursor --install-extension nguyenngoclong.terminal-keeper >/dev/null 2>&1 || true
 fi
 
-# Flags live in Cursor machine settings so the extension does not rewrite
-# "active" into sessions.json. Merge; do not replace the file.
-python3 - "${HOME}/.cursor-server/data/Machine/settings.json" << 'PY'
+# Flags live in Cursor user/machine settings so the extension does not
+# rewrite "active" into quizlet-web .vscode/settings.json. Merge; do not
+# replace the files.
+python3 - << 'PY'
 import json
+import os
 import pathlib
-import sys
 
-path = pathlib.Path(sys.argv[1])
-path.parent.mkdir(parents=True, exist_ok=True)
-data = {}
-if path.exists() and path.stat().st_size:
-    data = json.loads(path.read_text())
-data["terminal-keeper.activateOnStartup"] = True
-data["terminal-keeper.active"] = "default"
-data["terminal-keeper.keepExistingTerminals"] = True
-path.write_text(json.dumps(data, indent=2) + "\n")
+home = pathlib.Path(os.environ["HOME"])
+keys = {
+    "terminal-keeper.activateOnStartup": True,
+    "terminal-keeper.active": "default",
+    "terminal-keeper.keepExistingTerminals": True,
+}
+for path in (
+    home / ".cursor-server/data/User/settings.json",
+    home / ".cursor-server/data/Machine/settings.json",
+):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    data = {}
+    if path.exists() and path.stat().st_size:
+        data = json.loads(path.read_text())
+    data.update(keys)
+    path.write_text(json.dumps(data, indent=2) + "\n")
 PY
