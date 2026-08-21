@@ -1,0 +1,44 @@
+{
+  "$schema": "https://cdn.statically.io/gh/nguyenngoclongdev/cdn/main/schema/v10/terminal-keeper.json",
+  "theme": "chaos",
+  "active": "default",
+  "noClear": true,
+  "activateOnStartup": true,
+  "keepExistingTerminals": true,
+  "sessions": {
+    "default": [
+      {
+        "name": "Data Services",
+        "commands": [
+          "./tooling/devenvs/scripts/follow-logs.sh mysql consul consul-template memcached fluentd"
+        ]
+      },
+      {
+        "name": "PHP Services",
+        "commands": [
+          "./tooling/devenvs/scripts/follow-logs.sh php-fpm php-nginx"
+        ]
+      },
+      {
+        "name": "Devheh",
+        "commands": ["tail -F /workspace/logs/devheh.log"]
+      },
+      {
+        "name": "Renderer",
+        "commands": ["pnpm dlx pm2 logs dev-main-server"]
+      },
+      {
+        "name": "Claude Code",
+        "commands": ["./tooling/devenvs/scripts/claude-code.sh"]
+      },
+      {
+        "name": "Ngrok",
+        "commands": ["tail -F /workspace/logs/ngrok.log"]
+      },
+      {
+        "name": "Welcome",
+        "commands": ["./tooling/devenvs/scripts/welcome.sh"]
+      }
+    ]
+  }
+}
